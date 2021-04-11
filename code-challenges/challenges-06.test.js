@@ -135,8 +135,7 @@ describe('Testing challenge 3', () => {
 ------------------------------------------------------------------------------------------------ */
 
 const checkValues = (obj, value) => {
- let compare = Object.values(obj);
- if(compare === value){
+ if(Object.values(obj) == value){
    return true;
  }
  else {
@@ -176,8 +175,12 @@ describe('Testing challenge 4', () => {
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
- let entry = Object.entries(obj);
- return entry;
+  let Array = [];
+  Object.entries(obj).forEach((val)=>{
+  let value = val.join(': ');
+  Array.push(value);
+ })
+ return Array;
 };
 
 
@@ -186,11 +189,21 @@ const updateNumbers = (obj) => {
 CHALLENGE 5
 
 Write a function named getHouses that returns a new array containing the names of all of the houses in the data set.
+
+describe('Testing challenge 5', () => {
+  test('It should return an array of the names of the houses', () => {
+    expect(getHouses(characters)[0]).toStrictEqual('Greyjoy');
+    expect(getHouses(characters).length).toStrictEqual(7);
+  });
+});
+
 ------------------------------------------------------------------------------------------------ */
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
+  arr.forEach( element=>{
+    houses.push( element.house );
+  } );
   return houses;
 };
 
@@ -204,10 +217,30 @@ This function should take in an array of data and a character name and return a 
 For example:
 hasChildrenValues(characters, 'Cersei') will return true
 hasChildrenValues(characters, 'Sansa') will return false
+
+describe('Testing challenge 6', () => {
+  test('It should return true for characters that have children', () => {
+    expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
+  });
+
+  test('It should return false to characters who do not have children', () => {
+    expect(hasChildrenValues(characters, 'Sansa')).toBeFalsy();
+  });
+});
+
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+  let Value;
+  arr.forEach(element=>{
+    if(element.name === character){
+      if (element.children.length > 0){
+        Value = true;
+      }
+      else Value = false;
+    }
+  });
+  return Value;
 
 };
 

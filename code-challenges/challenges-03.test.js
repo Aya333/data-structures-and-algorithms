@@ -11,19 +11,18 @@ Push each updated animal string into the new array. Return the new array.
 
 HINT: Look at the tests to see how the callback functions are used.
 
-describe('Testing challenge 1', () => {
-  test('It should return an array of uppercase animal names', () => {
-    const arr = ['BeAr', 'lIon'];
-    expect(updateAnimal(arr, upper)[0]).toStrictEqual('BEAR');
-    expect(updateAnimal(arr, upper)[1]).toStrictEqual('LION');
+describe("Testing challenge 1", () => {
+  test("It should return an array of uppercase animal names", () => {
+    const arr = ["BeAr", "lIon"];
+    expect(updateAnimal(arr, upper)[0]).toStrictEqual("BEAR");
+    expect(updateAnimal(arr, upper)[1]).toStrictEqual("LION");
   });
-  test('It should return an array of lowercase animal names', () => {
-    const arr = ['BeAr', 'lIon'];
-    expect(updateAnimal(arr, lower)[0]).toStrictEqual('bear');
-    expect(updateAnimal(arr, lower)[1]).toStrictEqual('lion');
+  test("It should return an array of lowercase animal names", () => {
+    const arr = ["BeAr", "lIon"];
+    expect(updateAnimal(arr, lower)[0]).toStrictEqual("bear");
+    expect(updateAnimal(arr, lower)[1]).toStrictEqual("lion");
   });
 });
-
 
 ------------------------------------------------------------------------------------------------ */
 
@@ -73,9 +72,17 @@ Write a function called sortNumbers that takes an array of numbers and sorts the
 
 HINT: Beware... JS default is "Lexical" ordering. 
 
-describe('Testing challenge 3', () => {
-  test('It should sort low-to-high the numbers in an array', () => {
-    expect(sortNumbers([8, 3, 2, 9, 12, 1, 115])).toStrictEqual([1, 2, 3, 8, 9, 12, 115]);
+describe("Testing challenge 3", () => {
+  test("It should sort low-to-high the numbers in an array", () => {
+    expect(sortNumbers([8, 3, 2, 9, 12, 1, 115])).toStrictEqual([
+      1,
+      2,
+      3,
+      8,
+      9,
+      12,
+      115,
+    ]);
   });
 });
 ------------------------------------------------------------------------------------------------ */
