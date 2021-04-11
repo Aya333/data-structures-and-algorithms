@@ -107,10 +107,11 @@ describe("Testing challenge 4", () => {
 const howMuchPencil = (str) => {
   let result = [];
   let a;
-   for (let index = 0; index < result.length; index++) {
-        a= str.slice(i,String.length);
+   for (let index = 0; index < str.length; index++) {
+        a = str.slice(index,String.len0gth);
         result.push(a);
    }
+   result.push ('');
   return result;
 };
 
@@ -162,6 +163,25 @@ Write a function named listFoods that takes in the recipe and returns a new arra
 Use slice for this function, maybe more than once. The Array.indexOf() method may also be helpful.
 
 Do not use split for this function.
+
+describe("Testing challenge 6", () => {
+  test("It should return a list of foods", () => {
+    expect(listFoods(gruffaloCrumble)).toStrictEqual([
+      "Gruffalo",
+      "oats",
+      "brown sugar",
+      "flour",
+      "pure maple syrup",
+      "chopped nuts",
+      "baking soda",
+      "baking powder",
+      "cinnamon",
+      "melted butter",
+      "fresh water",
+    ]);
+    expect(listFoods(gruffaloCrumble).length).toStrictEqual(11);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const gruffaloCrumble = {
@@ -194,7 +214,13 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  let  Array = [];
+Array = recipe.ingredients;
+Array.forEach(element => {
+  element = element.split(' ');
+  element = element.slice(2, element.length).join(' ');
+  result.push(element);
+});
   return result;
 };
 
@@ -208,13 +234,7 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
-let  Array = [];
-Array = recipe.ingredients;
-Array.forEach(element => {
-  element = element.split(' ');
-  element = element.slice(2, element.length).join(' ');
-  result.push(element);
-});
+ // Solution code here...
 return result;
 };
 
