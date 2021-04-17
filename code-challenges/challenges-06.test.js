@@ -8,6 +8,13 @@ Use the characters data below for all of the challenges except challenge 2 and 3
 
 Write a function named sortByChildren that sorts the characters below by the number of children in each house (fewest to most). If a house has the same number of children, sort alphabetically by house name.
 
+describe('Testing challenge 1', () => {
+  test('It should sort the characters by number of children', () => {
+    expect(sortByChildren(characters)[0].name).toStrictEqual('Euron');
+    expect(sortByChildren(characters)[0].children.length).toStrictEqual(0);
+  });
+});
+
 ------------------------------------------------------------------------------------------------ */
 let characters = [
   {
@@ -55,8 +62,33 @@ let characters = [
 ];
 
 const sortByChildren = (charArray) => {
-  // Solution code here...
-};
+ charArray.sort((a,b) =>{
+     let c = a.house.toUpperCase();
+  let d = b.house.toUpperCase();
+ if( a.children.length < b.children.length){
+   return -1;
+ }
+
+ else if ( a.children.length > b.children.length){
+   return 1;
+ }
+
+ else if (a.children.length === b.children.length) {
+   if (c < d) {
+   return -1;
+   }
+   else if (c > d){
+     return 1;
+   }
+   else if(c === d){
+     return 0;
+   }
+ }});
+ return charArray;
+ };
+
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -64,6 +96,12 @@ CHALLENGE 2
 Write a function named getCourseKeys that takes in the courseInfo object and returns an array containing the keys for the courseInfo object.
 
 For example: (['name', 'duration', 'topics', 'finalExam']).
+
+describe('Testing challenge 2', () => {
+  test('It should return the keys from an object', () => {
+    expect(getCourseKeys(courseInfo)).toStrictEqual(['name', 'duration', 'topics', 'finalExam']);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks'},
   topics: ['SMACSS', 'APIs', 'NodeJS', 'SQL', 'jQuery', 'functional programming'],
@@ -71,7 +109,14 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
 };
 
 const getCourseKeys = (obj) => {
-  // Solution code here...
+  // for (const Keys in courseInfo) {
+  //   if (Object.hasOwnProperty.call(object, key)) {
+  //     const element = object[key];     
+  //   }
+  // }
+  // obj.keys
+  let keyArray = Object.keys(obj);
+  return keyArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -79,11 +124,23 @@ CHALLENGE 3
 
 Write a function named checkValues that takes in an object and a value and returns true if the value is in the object.
 
-
+describe('Testing challenge 3', () => {
+  test('It should return true if the value is in the object', () => {
+    expect(checkValues({ class: '301' }, '301')).toBe(true);
+  });
+ test('It should return false if the value is not in the object', () => {
+    expect(checkValues({ class: '301' }, '401')).toBe(false);
+  });
+});
 ------------------------------------------------------------------------------------------------ */
 
 const checkValues = (obj, value) => {
-  // Solution code here...
+ if(Object.values(obj) == value){
+   return true;
+ }
+ else {
+   return false;
+ }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -103,10 +160,27 @@ HR has asked you to change the data to make it easier to print so that it looks 
   'Alan Turing: 222-853-5933'
 ]
 
+describe('Testing challenge 4', () => {
+  test('It should return an an array of names and numbers', () => {
+    const startingObj = {
+      'Grace Hopper': '222-303-5938',
+      'Ada Lovelace': '222-349-9842',
+      'Alan Turing': '222-853-5933'
+    }
+
+    expect(updateNumbers(startingObj).includes('Grace Hopper: 222-303-5938')).toBe(true);
+  });
+});
+
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
-  // Solution code here...
+  let Array = [];
+  Object.entries(obj).forEach((val)=>{
+  let value = val.join(': ');
+  Array.push(value);
+ })
+ return Array;
 };
 
 
@@ -115,11 +189,21 @@ const updateNumbers = (obj) => {
 CHALLENGE 5
 
 Write a function named getHouses that returns a new array containing the names of all of the houses in the data set.
+
+describe('Testing challenge 5', () => {
+  test('It should return an array of the names of the houses', () => {
+    expect(getHouses(characters)[0]).toStrictEqual('Greyjoy');
+    expect(getHouses(characters).length).toStrictEqual(7);
+  });
+});
+
 ------------------------------------------------------------------------------------------------ */
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
+  arr.forEach( element=>{
+    houses.push( element.house );
+  } );
   return houses;
 };
 
@@ -133,10 +217,30 @@ This function should take in an array of data and a character name and return a 
 For example:
 hasChildrenValues(characters, 'Cersei') will return true
 hasChildrenValues(characters, 'Sansa') will return false
+
+describe('Testing challenge 6', () => {
+  test('It should return true for characters that have children', () => {
+    expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
+  });
+
+  test('It should return false to characters who do not have children', () => {
+    expect(hasChildrenValues(characters, 'Sansa')).toBeFalsy();
+  });
+});
+
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+  let Value;
+  arr.forEach(element=>{
+    if(element.name === character){
+      if (element.children.length > 0){
+        Value = true;
+      }
+      else Value = false;
+    }
+  });
+  return Value;
 
 };
 
